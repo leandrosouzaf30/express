@@ -36,3 +36,23 @@ class Produto(models.Model):
         "Fornecedor",
         on_delete=models.CASCADE
     )
+class ItemVendido(models.Model):
+    preco_unitario = models.FloatField()
+    quantidade = models.IntegerField()
+    desconto = models.FloatField()
+    data_venda = models.DateField()
+    produto = models.ForeignKey(
+        "Produto",
+        on_delete =models.CASCADE,
+    )
+    cliente = models.ForeignKey(
+        "Cliente",
+        on_delete=models.CASCADE,
+    )
+
+class Cliente(models.Model):
+    nome = models.CharField(max_length=255)
+    telefone = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.nome
