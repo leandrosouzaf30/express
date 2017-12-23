@@ -10,14 +10,18 @@ def produtos(request):
     }
     template_produto = 'produto/produtos.html'
     return render(request, template_produto, context)
+    
 
 def vendas(request):
     vendas = ItemVendido.objects.all()
     context = {
-        'vendas': vendas
+        'vendas': vendas,
+
     }
     template_vendas = 'vendas/vendas.html'
     return render(request, template_vendas, context)
+
+
     
 
 
