@@ -57,11 +57,7 @@
                                 <td>{{venda.produto.descricao}}</td>
                                 <td>{{venda.quantidade}}</td>
                                 <td>{{venda.preco_unitario}}</td>
-                                {% for total in total_vendas %}
-                                <td>
-                                    <span class="label label-success">{{total.desconto}}</span>
-                                </td>
-                                {% endfor %}
+                                <td>{{total.desconto}}</td>
                                 <td>
                                     <span class="label label-success">{{venda.data_venda}}</span>
                                 </td>

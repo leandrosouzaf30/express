@@ -122,5 +122,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'express', 'media')
+MEDIA_URL = '/media/'
 
 BOOTSTRAP_ADMIN_SIDEBAR_MENU = False
+
+#Auth
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_URL = 'logout'
