@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Express</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    
     <!-- Bootstrap 3.3.2 -->
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
     <!-- Font Awesome Icons -->
@@ -19,7 +20,7 @@
     <!-- Daterange picker -->
     <link href="{% static 'plugins/daterangepicker/daterangepicker-bs3.css' %}" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
-    <link href="{% static 'dist/css/AdminLTE.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'dist/css/AdminLTE.css' %}" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins 
          folder instead of downloading all of them to reduce the load. -->
     <link href="{% static 'dist/css/skins/_all-skins.min.css' %}" rel="stylesheet" type="text/css" />
@@ -255,9 +256,9 @@
               <img src="{% static "dist/img/user2-160x160.jpg" %}" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-              <p>Leandro</p>
+              <p>{{ user }}</p>
 
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+              <a href="#"><i class="fa fa-circle text-success"></i> {{ user.email }}</a>
             </div>
           </div>
           <!-- search form -->
