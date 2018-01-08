@@ -90,11 +90,12 @@ DATABASES = {
 }
 
 #Configuração bando de dados para o Heroku
+
 from dj_database_url import parse as dburl
 
-default_dburl = ‘sqlite:///’ + os.path.join(BASE_DIR, ‘db.sqlite3’)
+default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
-DATABASES = { ‘default’: config(‘DATABASE_URL’, default=default_dburl, cast=dburl), }
+DATABASES = { 'default': config('DATABASE_URL', default=default_dburl, cast=dburl), }
 
 
 # Password validation
@@ -148,13 +149,5 @@ LOGOUT_URL = 'logout'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
 
