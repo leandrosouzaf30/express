@@ -31,7 +31,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 
-ALLOWED_HOSTS = ['expressvendas.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['controlexpress.herokuapp.com', 'localhost']
 
 
 # Application definition
