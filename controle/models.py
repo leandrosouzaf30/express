@@ -36,6 +36,11 @@ class Produto(models.Model):
         "Fornecedor",
         on_delete=models.CASCADE
     )
+
+    def qtd_estoque(self):
+        return self.unidades_no_estoque - self.unidades_pedidas
+
+
 class ItemVendido(models.Model):
     preco_unitario = models.FloatField()
     quantidade = models.IntegerField()

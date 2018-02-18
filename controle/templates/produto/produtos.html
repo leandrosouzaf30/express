@@ -40,8 +40,9 @@
                   <th>Categoría</th>  
                   <th>Descrição</th>
                   <th>Preço</th>
-                  <th>Em Estoque</th>
+                  <th>Qtd_Inicial</th>
                   <th>Vendidas</th>
+                  <th>Em Estoque</th>
                 </tr>
                 {% for produto in produtos %}
                 <tr>
@@ -52,7 +53,7 @@
                   <td>{{produto.preco}}</td>
                   <td><span class="label label-success">{{produto.unidades_no_estoque}}</span></td>
                   <td><span class="label label-success">{{produto.unidades_pedidas}}</span></td>
-                  
+                  <td><span class="label label-success">{{produto.qtd_estoque}}</span></td>
                 </tr>
                 {% endfor %}
               </table>
