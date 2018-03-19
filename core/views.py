@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.contrib.auth.decorators import login_required
 from controle.models import ItemVendido, Cliente, Produto, Fornecedor
 
 # def count_vendas(request):
@@ -13,7 +13,7 @@ from controle.models import ItemVendido, Cliente, Produto, Fornecedor
 
 # def count_fornecedores(request):
 #     count_fornecedores = Fornecedor.objects.count()
-
+@login_required
 def home(request):
     
     context = {

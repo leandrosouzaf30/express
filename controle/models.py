@@ -40,11 +40,14 @@ class Produto(models.Model):
     def qtd_estoque(self):
         return self.unidades_no_estoque - self.unidades_pedidas
 
+    def __str__(self):
+        return self.descricao
+
 
 class ItemVendido(models.Model):
-    preco_unitario = models.FloatField()
+    preco_unitario = models.FloatField(verbose_name='Valor da Venda')
     quantidade = models.IntegerField()
-    desconto = models.FloatField()
+    desconto = models.FloatField(default=0.0)
     data_venda = models.DateField()
     produto = models.ForeignKey(
         "Produto",
@@ -54,6 +57,14 @@ class ItemVendido(models.Model):
         "Cliente",
         on_delete=models.CASCADE,
     )
+
+    def valor_final_prod(self):
+        return (self.preco_unitario - self.desconto)
+
+    def __str__(self):
+        return str(self.produto)
+
+    # item = ItemVendido.objects.aggregate(valor_total=Avg(F('quantidade')*F('quantidade')))
 
 class Cliente(models.Model):
     nome = models.CharField(max_length=255)

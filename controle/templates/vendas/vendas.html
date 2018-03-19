@@ -49,6 +49,7 @@
                                 <th>Preço Unitário</th>
                                 <th>Desconto</th>
                                 <th>Data da Venda</th>
+                                <th>Valor a pagar</th>
                             </tr>
                             {% for venda in vendas %}
                             <tr>
@@ -56,11 +57,12 @@
                                 <td>{{venda.cliente.nome}}</td>
                                 <td>{{venda.produto.descricao}}</td>
                                 <td>{{venda.quantidade}}</td>
-                                <td>{{venda.preco_unitario}}</td>
-                                <td>{{total.desconto}}</td>
+                                <td>${{venda.preco_unitario}}</td>
+                                <td>${{venda.desconto}}</td>
                                 <td>
                                     <span class="label label-success">{{venda.data_venda}}</span>
                                 </td>
+                                <td>${{venda.valor_final_prod}}</td>
 
                             </tr>
                             {% endfor %}

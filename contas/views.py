@@ -21,6 +21,6 @@ def registrar(request):
     }
     return render(request, 'registrar.html', context)
 
-def logout_view(request):
+def logout(request):
     logout(request)
-    # Redirecione para uma página de sucesso.
+    return HttpResponseRedirect('/login/')
