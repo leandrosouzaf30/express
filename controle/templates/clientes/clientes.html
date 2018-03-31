@@ -37,13 +37,19 @@
               <table class="table table-hover">
                 <tr>
                   <th>Nome</th>
-                  <th>Telefone</th>  
+                  <th>Contato</th>
+                  <th>Rua</th>
+                  <th>Número</th>
+                  <th>Bairro</th>    
                 </tr>
                 {% for cliente in clientes %}
                 <tr>
                   
                   <td>{{cliente.nome}}</td>  
-                  <td>{{cliente.telefone}}</td>
+                  <td>{{cliente.contato}}</td>
+                  <td>{{cliente.rua}}</td>
+                  <td>{{cliente.numero}}</td>
+                  <td>{{cliente.bairro}}</td>
                 </tr>
                 {% endfor %}
               </table>
