@@ -41,8 +41,7 @@
                   <th>Descrição</th>
                   <th>Preço</th>
                   <th>Qtd_Inicial</th>
-                  <th>Vendidas</th>
-                  <th>Em Estoque</th>
+                  <th></th>
                 </tr>
                 {% for produto in produtos %}
                 <tr>
@@ -52,6 +51,9 @@
                   <td>{{produto.descricao}}</td>
                   <td>{{produto.preco}}</td>
                   <td><span class="label label-success">{{produto.unidades_compradas}}</span></td>
+                  <td><a href="{% url 'produto_detalhe' pk=produto.pk %}">Detalhes</a></td>
+                  <!--<td><a class="btn btn-default" href="{% url 'produto_editar'%}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                  <td><a class="btn btn-default" href="{% url 'produto_editar'%}"><span class="glyphicon glyphicon-trash"></span></a></td>-->
                 </tr>
                 {% endfor %}
               </table>

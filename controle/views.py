@@ -5,6 +5,9 @@ from . models import ItemVendido
 from . models import Cliente
 from django.contrib.auth.decorators import login_required
 from .forms import ProdutoForm
+from django.contrib import messages
+
+
 
 @login_required
 def produtos(request):
@@ -15,6 +18,11 @@ def produtos(request):
     template_produtos = 'produto/produtos.html'
     return render(request, template_produtos, context)
 
+@login_required
+def produto_detalhe(request, pk):
+    produto = get_object_or_404(Produto, pk=pk)
+    return render(request, 'produto/detalhe_produto.html', {'produto': produto})
+
 
 @login_required
 def produto_novo(request):
@@ -22,6 +30,7 @@ def produto_novo(request):
         form = ProdutoForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.add_message(request, messages.INFO, 'Hello world.')
             return redirect('produto_novo')     
     else:
         form = ProdutoForm()    
@@ -30,14 +39,14 @@ def produto_novo(request):
     }
     return render(request, 'produto/cad_produto.html', context)
     
-# @login_required
-# def produto_editar(request):
-#     form = get_object_or_404(Produto, pk=pk)
-#     if request.method == "POST":
-#         form = PostForm(request.POST, instance=produto)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('detalhe_produto', pk=produto.pk)
+@login_required
+def produto_editar(request):
+    form = get_object_or_404(Produto, pk=pk)
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=produto)
+        if form.is_valid():
+            form.save()
+            return redirect('detalhe_produto', pk=produto.pk)
 
 
     
