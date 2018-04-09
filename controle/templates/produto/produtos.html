@@ -22,14 +22,14 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Produtos</h3>
-              <a href="{% url 'produto_novo' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>Cadastrar Produto</a>
+        
               <div class="box-tools">
-                <div class="input-group">
+                {% comment %} <div class="input-group">
                   <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
                   <div class="input-group-btn">
                     <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                   </div>
-                </div>
+                </div> {% endcomment %}
               </div>
             </div><!-- /.box-header -->
             <div class="box-body table-responsive no-padding"> 
@@ -41,7 +41,7 @@
                   <th>Descrição</th>
                   <th>Preço</th>
                   <th>Qtd_Inicial</th>
-                  <th></th>
+                  <th><a href="{% url 'produto_novo' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>Cadastrar</a></th>
                 </tr>
                 {% for produto in produtos %}
                 <tr>
@@ -51,9 +51,9 @@
                   <td>{{produto.descricao}}</td>
                   <td>{{produto.preco}}</td>
                   <td><span class="label label-success">{{produto.unidades_compradas}}</span></td>
-                  <td><a href="{% url 'produto_detalhe' pk=produto.pk %}">Detalhes</a></td>
-                  <!--<td><a class="btn btn-default" href="{% url 'produto_editar'%}"><span class="glyphicon glyphicon-pencil"></span></a></td>
-                  <td><a class="btn btn-default" href="{% url 'produto_editar'%}"><span class="glyphicon glyphicon-trash"></span></a></td>-->
+                  <td width=9%><a href="{% url 'produto_detalhe' pk=produto.pk %}">Detalhes</a></td>
+                  <td><a href="{% url 'produto_editar' pk=produto.pk %}">Editar</a></td>
+                  <td><a href="{% url 'produto_deletar' pk=produto.pk %}">Excluir</a></td>
                 </tr>
                 {% endfor %}
               </table>
