@@ -50,6 +50,11 @@
                                 <th>Desconto</th>
                                 <th>Data da Venda</th>
                                 <th>Valor a pagar</th>
+                                <th>
+                                    <a href="{% url 'venda_nova' %}" class="top-menu">
+                                        <span class="glyphicon glyphicon-plus"></span>Cadastrar</a>
+                                </th>
+
                             </tr>
                             {% for venda in vendas %}
                             <tr>
@@ -63,6 +68,15 @@
                                     <span class="label label-success">{{venda.data_venda}}</span>
                                 </td>
                                 <td>${{venda.valor_final_prod}}</td>
+                                <td width=9%>
+                                    <a href="{% url 'venda_detalhe' pk=venda.pk %}">Detalhes</a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'venda_editar' pk=venda.pk %}">Editar</a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'venda_deletar' pk=venda.pk %}">Excluir</a>
+                                </td>
 
                             </tr>
                             {% endfor %}

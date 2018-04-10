@@ -45,9 +45,9 @@ class Produto(models.Model):
 
 
 class ItemVendido(models.Model):
-    preco_unitario = models.FloatField(default= 0.0, editable=False)
+    preco_unitario = models.FloatField()
     quantidade = models.IntegerField()
-    desconto = models.FloatField(default=0.0)
+    desconto = models.FloatField()
     data_venda = models.DateField()
     produto = models.ForeignKey(
         "Produto",

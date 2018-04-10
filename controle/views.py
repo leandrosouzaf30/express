@@ -3,8 +3,30 @@ from django.shortcuts import get_object_or_404
 from . models import Produto
 from . models import ItemVendido
 from . models import Cliente
+from . models import Fornecedor
 from django.contrib.auth.decorators import login_required
 from .forms import ProdutoForm
+from .forms import VendaForm
+
+
+@login_required
+def clientes(request):
+    clientes = Cliente.objects.all()
+    context = {
+        'clientes': clientes
+    }
+    template_clientes = 'clientes/clientes.html'
+    return render(request, template_clientes, context)
+
+
+@login_required
+def fornecedores(request):
+    fornecedores = Fornecedor.objects.all()
+    context = {
+        'fornecedores': fornecedores
+    }
+    template_fornecedores = 'fornecedores/fornecedores.html'
+    return render(request, template_fornecedores, context)
 
 """
 Metodos referentes a Produtos
@@ -37,7 +59,8 @@ def produto_novo(request):
     context = {
         'form': form
     }
-    return render(request, 'produto/cad_produto.html', context)
+    template_produtos = 'produto/cad_produto.html'
+    return render(request, template_produtos, context)
     
 @login_required
 def produto_editar(request, pk):
@@ -53,7 +76,8 @@ def produto_editar(request, pk):
     context = {
         'form': form
     }
-    return render(request, 'produto/editar_produto.html', context)
+    template_produtos = 'produto/editar_produto.html'
+    return render(request, template_produtos, context)
 
 @login_required
 def produto_deletar(request, pk):
@@ -75,14 +99,49 @@ def vendas(request):
     template_vendas = 'vendas/vendas.html'
     return render(request, template_vendas, context)
 
+
 @login_required
-def clientes(request):
-    clientes = Cliente.objects.all()
+def venda_detalhe(request, pk):
+    venda = get_object_or_404(ItemVendido, pk=pk)
+    return render(request, 'vendas/detalhe_venda.html', {'venda': venda})
+
+@login_required
+def venda_nova(request):
+    if request.method == 'POST':
+        form = VendaForm(request.POST)
+        if form.is_valid():
+            venda = form.save(commit=False)
+            venda.save()
+            return redirect('venda_detalhe', pk=venda.pk)     
+    else:
+        form = VendaForm()    
     context = {
-        'clientes': clientes
+        'form': form
     }
-    template_clientes = 'clientes/clientes.html'
-    return render(request, template_clientes, context)
+    template_vendas = 'vendas/cad_vendas.html'
+    return render(request, template_vendas, context)
+
+@login_required
+def venda_editar(request, pk):
+    venda = get_object_or_404(ItemVendido, pk=pk)
+    if request.method == "POST":
+        form = VendaForm(request.POST, instance=venda)
+        if form.is_valid():
+            venda = form.save(commit=False)
+            venda.save()
+            return redirect('venda_detalhe', pk=venda.pk)
+    else:
+        form = VendaForm(instance=venda)    
+    context = {
+        'form': form
+    }
+    template_vendas = 'vendas/editar_venda.html'
+    return render(request, template_vendas, context)
+
+@login_required
+def venda_deletar(request, pk):
+    venda = ItemVendido.objects.get(pk=pk).delete()
+    return redirect('vendas') 
 
 
 

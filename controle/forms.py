@@ -1,5 +1,6 @@
 from django import forms
 from controle.models import Produto
+from controle.models import ItemVendido
 
 class ProdutoForm(forms.ModelForm):
     class Meta:
@@ -15,4 +16,20 @@ class ProdutoForm(forms.ModelForm):
         self.fields['unidades_compradas'].widget.attrs['class'] = 'form-control'
         #self.fields['unidades_no_estoque'].widget.attrs['class'] = 'form-control'
         self.fields['fornecedor'].widget.attrs['class'] = 'form-control'
+
+class VendaForm(forms.ModelForm):
+    class Meta:
+        model = ItemVendido
+        fields = ['produto', 'cliente', 'preco_unitario', 'quantidade', 'desconto', 'data_venda']
+
+    def __init__(self, *args, **kwargs):
+        super(VendaForm, self).__init__(*args, **kwargs)
+
+        self.fields['produto'].widget.attrs['class'] = 'form-control'
+        self.fields['cliente'].widget.attrs['class'] = 'form-control'
+        self.fields['preco_unitario'].widget.attrs['class'] = 'form-control'
+        self.fields['quantidade'].widget.attrs['class'] = 'form-control'
+        self.fields['desconto'].widget.attrs['class'] = 'form-control'
+        self.fields['data_venda'].widget.attrs['class'] = 'form-control'
+        
     
