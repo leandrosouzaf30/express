@@ -90,7 +90,7 @@ def produto_deletar(request, pk):
         #                  'Produto deletado com sucesso!')
         
     context = {
-        'produtos': produtos
+        'produto': produto
     }
     template_produtos = 'produto/deletar_produto.html'
     return render(request, template_produtos, context) 
@@ -146,8 +146,15 @@ def venda_editar(request, pk):
 
 @login_required
 def venda_deletar(request, pk):
-    venda = ItemVendido.objects.get(pk=pk).delete()
-    return redirect('vendas') 
+    venda = get_object_or_404(ItemVendido, pk=pk)
+    if request.method == "POST":
+        venda.delete()
+        return redirect('vendas') 
+    context = {
+        'venda': venda
+    }
+    template_vendas = 'vendas/deletar_venda.html'
+    return render(request, template_vendas, context) 
 
 
 

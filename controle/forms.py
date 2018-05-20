@@ -20,16 +20,16 @@ class ProdutoForm(forms.ModelForm):
 class VendaForm(forms.ModelForm):
     class Meta:
         model = ItemVendido
-        fields = ['produto', 'cliente', 'preco_unitario', 'quantidade', 'desconto', 'data_venda']
+        fields = ['produto', 'cliente', 'quantidade', 'desconto']
 
     def __init__(self, *args, **kwargs):
         super(VendaForm, self).__init__(*args, **kwargs)
 
         self.fields['produto'].widget.attrs['class'] = 'form-control'
         self.fields['cliente'].widget.attrs['class'] = 'form-control'
-        self.fields['preco_unitario'].widget.attrs['class'] = 'form-control'
+        # self.fields['preco_unitario'].widget.attrs['class'] = 'form-control'
         self.fields['quantidade'].widget.attrs['class'] = 'form-control'
         self.fields['desconto'].widget.attrs['class'] = 'form-control'
-        self.fields['data_venda'].widget.attrs['class'] = 'form-control'
+        # self.fields['data_venda'].widget.attrs['class'] = 'form-control'
         
     

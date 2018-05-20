@@ -48,7 +48,7 @@ class ItemVendido(models.Model):
     preco_unitario = models.FloatField()
     quantidade = models.IntegerField()
     desconto = models.FloatField()
-    data_venda = models.DateField()
+    data_venda = models.DateTimeField(auto_now_add=True)
     produto = models.ForeignKey(
         "Produto",
         on_delete =models.CASCADE,
