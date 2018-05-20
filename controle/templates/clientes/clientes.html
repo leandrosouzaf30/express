@@ -40,7 +40,8 @@
                   <th>Contato</th>
                   <th>Rua</th>
                   <th>Número</th>
-                  <th>Bairro</th>    
+                  <th>Bairro</th>
+                  <th><a href="{% url 'cliente_novo' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>Cadastrar</a></th>    
                 </tr>
                 {% for cliente in clientes %}
                 <tr>
@@ -50,6 +51,9 @@
                   <td>{{cliente.rua}}</td>
                   <td>{{cliente.numero}}</td>
                   <td>{{cliente.bairro}}</td>
+                  <td width=9%><a href="{% url 'cliente_detalhe' pk=cliente.pk %}">Detalhes</a></td>
+                  <td><a href="{% url 'cliente_editar' pk=cliente.pk %}">Editar</a></td>
+                  <td><a href="{% url 'cliente_deletar' pk=cliente.pk %}">Excluir</a></td>
                 </tr>
                 {% endfor %}
               </table>

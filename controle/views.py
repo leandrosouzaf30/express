@@ -8,6 +8,7 @@ from . models import Cliente
 from . models import Fornecedor
 from .forms import ProdutoForm
 from .forms import VendaForm
+from .forms import ClienteForm
 
 
 @login_required
@@ -18,6 +19,61 @@ def clientes(request):
     }
     template_clientes = 'clientes/clientes.html'
     return render(request, template_clientes, context)
+
+@login_required
+def cliente_detalhe(request, pk):
+    cliente = get_object_or_404(Cliente, pk=pk)
+    context = {
+        'cliente': cliente
+    }
+    template_clientes = 'clientes/detalhe_cliente.html'
+    return render(request, template_clientes, context )
+
+@login_required
+def cliente_novo(request):
+    if request.method == 'POST':
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            cliente = form.save(commit=False)
+            cliente.save()
+            return redirect('cliente_detalhe', pk=cliente.pk)     
+    else:
+        form = ClienteForm()    
+    context = {
+        'form': form
+    }
+    template_cliente = 'clientes/cad_cliente.html'
+    return render(request, template_cliente, context)
+
+@login_required
+def cliente_editar(request, pk):
+    cliente = get_object_or_404(Cliente, pk=pk)
+    if request.method == "POST":
+        form = ClienteForm(request.POST, instance=cliente)
+        if form.is_valid():
+            cliente = form.save(commit=False)
+            cliente.save()
+            return redirect('cliente_detalhe', pk=cliente.pk)
+    else:
+        form = ClienteForm(instance=cliente)    
+    context = {
+        'form': form
+    }
+    template_cliente = 'clientes/editar_cliente.html'
+    return render(request, template_cliente, context)
+
+@login_required
+def cliente_deletar(request, pk):
+    cliente = get_object_or_404(Cliente, pk=pk)
+    if request.method == 'POST':
+        cliente.delete()
+        return redirect('clientes')
+        
+    context = {
+        'cliente': cliente
+    }
+    template_clientes = 'clientes/deletar_cliente.html'
+    return render(request, template_clientes, context) 
 
 
 @login_required
@@ -44,7 +100,11 @@ def produtos(request):
 @login_required
 def produto_detalhe(request, pk):
     produto = get_object_or_404(Produto, pk=pk)
-    return render(request, 'produto/detalhe_produto.html', {'produto': produto})
+    context = {
+        'produto': produto
+    }
+    template_produto = 'produto/detalhe_produto.html'
+    return render(request, template_produto, context)
 
 
 @login_required

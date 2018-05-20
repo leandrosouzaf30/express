@@ -1,0 +1,55 @@
+{% extends "base.html" %} {% block content %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Excluir Cliente
+        </h1>
+
+        <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                Cuidado! Esta ação eliminará este registro do sistema.
+        </div>
+        <form method="POST" class="post-form" role="form">
+            {% csrf_token %}
+            <p>Tem certeza que você quer deletar este cliente <strong>{{ cliente.nome }}</strong> ?</p>
+            <button type="submit" class="btn btn-warning">Deletar</button>       
+        </form>
+        <ol class="breadcrumb">
+            <li>
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> Home</a>
+            </li>
+            <li>
+                <a href="#">Tables</a>
+            </li>
+            <li class="active">Simple</li>
+        </ol>
+    </section>
+
+    <!-- Main content -->
+    {% comment %} <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <h2>{{cliente.descricao}}</h2>
+                        <h3>{{cliente.fornecedor.nome}}</h3>
+                        <h3>{{cliente.categoria.nome}}</h3>
+                        <h3>{{cliente.descricao}}</h3>
+                        <h3>{{cliente.preco}}</h3>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+    </section> {% endcomment %}
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+{% endblock %}
