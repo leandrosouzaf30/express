@@ -3,8 +3,19 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Detalhes do Produto
+            Excluir Produto
         </h1>
+
+        <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                Cuidado! Esta ação eliminará este registro do sistema.
+        </div>
+        <form method="POST" class="post-form" role="form">
+            {% csrf_token %}
+            <p>Tem certeza que você quer deletar este produto<strong>{{ produto.descricao }}</strong> ?</p>
+            <button type="submit" class="btn btn-warning">Deletar</button>       
+        </form>
         <ol class="breadcrumb">
             <li>
                 <a href="#">
@@ -18,7 +29,7 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    {% comment %} <section class="content">
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
@@ -29,6 +40,7 @@
                         <h2>{{produto.descricao}}</h2>
                         <h3>{{produto.fornecedor.nome}}</h3>
                         <h3>{{produto.categoria.nome}}</h3>
+                        <h3>{{produto.descricao}}</h3>
                         <h3>{{produto.preco}}</h3>
                     </div>
                     <!-- /.box-body -->
@@ -36,7 +48,7 @@
                 <!-- /.box -->
             </div>
         </div>
-    </section>
+    </section> {% endcomment %}
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->

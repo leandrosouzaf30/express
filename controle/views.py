@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from . models import Produto
 from . models import ItemVendido
 from . models import Cliente
 from . models import Fornecedor
-from django.contrib.auth.decorators import login_required
 from .forms import ProdutoForm
 from .forms import VendaForm
 
@@ -81,12 +82,17 @@ def produto_editar(request, pk):
 
 @login_required
 def produto_deletar(request, pk):
-    produto = Produto.objects.get(pk=pk).delete()
-    produtos = Produto.objects.all()
+    produto = get_object_or_404(Produto, pk=pk)
+    if request.method == 'POST':
+        produto.delete()
+        return redirect('produtos')
+        # messages.success(request,
+        #                  'Produto deletado com sucesso!')
+        
     context = {
         'produtos': produtos
     }
-    template_produtos = 'produto/produtos.html'
+    template_produtos = 'produto/deletar_produto.html'
     return render(request, template_produtos, context) 
         
 @login_required
