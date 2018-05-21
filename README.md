@@ -3,6 +3,8 @@ Projeto de gerenciamento de vendas.
 
 link da aplicação: https://controlexpress.herokuapp.com/
 
+Basta se cadastrar para testar o sistema.
+
 # Executando o projeto localmente
 
 1. Clone o repositório.
@@ -22,6 +24,7 @@ pip install -r requirements.txt
 # Crie o banco de dados:
 
 python makemigrations
+
 python manage.py migrate
 
 # Finalmente, execute o servidor de desenvolvimento:
