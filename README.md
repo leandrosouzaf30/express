@@ -1,10 +1,15 @@
 # express
+Projeto de gerenciamento de vendas.
+
+link da aplicação: https://controlexpress.herokuapp.com/
 
 # Executando o projeto localmente
 
-Primeiro, clone o repositório na sua máquina local:
+1. Clone o repositório.
+2. Crie um virtualenv com Python 3.6.2
+3. Ative o virtualenv.
+4. Instale as dependências.
 
-git clone git@github.com:leandrosouzaf30/express.git
 
 # Criando o ambiente virtual
 
@@ -16,6 +21,7 @@ pip install -r requirements.txt
 
 # Crie o banco de dados:
 
+python makemigrations
 python manage.py migrate
 
 # Finalmente, execute o servidor de desenvolvimento:
