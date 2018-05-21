@@ -22,6 +22,7 @@ pip install -r requirements.txt
 # Crie o banco de dados:
 
 python makemigrations
+
 python manage.py migrate
 
 # Finalmente, execute o servidor de desenvolvimento:
