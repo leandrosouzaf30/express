@@ -41,7 +41,7 @@
                   <th>Cidade</th>
                   <th>UF</th>
                   <th>Contato</th>
-                  {% comment %} <th><a href="{% url 'fornecedor_novo' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>Cadastrar</a></th> {% endcomment %}
+                  <th><a href="{% url 'fornecedor_novo' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>Cadastrar</a></th>
                 </tr>
                 {% for fornecedor in fornecedores %}
                 <tr>
@@ -51,10 +51,9 @@
                   <td>{{fornecedor.cidade}}</td>
                   <td>{{fornecedor.uf}}</td>
                   <td>{{fornecedor.telefone}}</td>
-                  <td><span class="label label-success">{{produto.unidades_compradas}}</span></td>
-                  {% comment %} <td width=9%><a href="{% url 'produto_detalhe' pk=produto.pk %}">Detalhes</a></td>
-                  <td><a href="{% url 'produto_editar' pk=produto.pk %}">Editar</a></td>
-                  <td><a href="{% url 'produto_deletar' pk=produto.pk %}">Excluir</a></td> {% endcomment %}
+                  <td width=9%><a href="{% url 'fornecedor_detalhe' pk=fornecedor.pk %}">Detalhes</a></td>
+                 <td><a href="{% url 'fornecedor_editar' pk=fornecedor.pk %}">Editar</a></td>
+                  <td><a href="{% url 'fornecedor_deletar' pk=fornecedor.pk %}">Excluir</a></td>
                 </tr>
                 {% endfor %}
               </table>

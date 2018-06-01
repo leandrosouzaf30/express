@@ -9,6 +9,7 @@ from . models import Fornecedor
 from .forms import ProdutoForm
 from .forms import VendaForm
 from .forms import ClienteForm
+from .forms import FornecedorForm
 
 
 @login_required
@@ -214,7 +215,69 @@ def venda_deletar(request, pk):
         'venda': venda
     }
     template_vendas = 'vendas/deletar_venda.html'
-    return render(request, template_vendas, context) 
+    return render(request, template_vendas, context)
+
+
+@login_required
+def fornecedores(request):
+    fornecedores = Fornecedor.objects.all()
+    context = {
+        'fornecedores': fornecedores,
+
+    }
+    template_fornecedores = 'fornecedores/fornecedores.html'
+    return render(request, template_fornecedores, context)
+
+
+@login_required
+def fornecedor_detalhe(request, pk):
+    fornecedor = get_object_or_404(Fornecedor, pk=pk)
+    return render(request, 'fornecedores/detalhe_fornecedor.html', {'fornecedor': fornecedor})
+
+@login_required
+def fornecedor_novo(request):
+    if request.method == 'POST':
+        form = FornecedorForm(request.POST)
+        if form.is_valid():
+            fornecedor = form.save(commit=False)
+            fornecedor.save()
+            return redirect('fornecedor_detalhe', pk=fornecedor.pk)     
+    else:
+        form = FornecedorForm()    
+    context = {
+        'form': form
+    }
+    template_fornecedores = 'fornecedores/cad_fornecedor.html'
+    return render(request, template_fornecedores, context)
+
+@login_required
+def fornecedor_editar(request, pk):
+    fornecedor = get_object_or_404(Fornecedor, pk=pk)
+    if request.method == "POST":
+        form = FornecedorForm(request.POST, instance=fornecedor)
+        if form.is_valid():
+            fornecedor = form.save(commit=False)
+            fornecedor.save()
+            return redirect('fornecedor_detalhe', pk=fornecedor.pk)
+    else:
+        form = FornecedorForm(instance=fornecedor)    
+    context = {
+        'form': form
+    }
+    template_fornecedores = 'fornecedores/editar_fornecedor.html'
+    return render(request, template_fornecedores, context)
+
+@login_required
+def fornecedor_deletar(request, pk):
+    fornecedor = get_object_or_404(Fornecedor, pk=pk)
+    if request.method == "POST":
+        fornecedor.delete()
+        return redirect('fornecedores') 
+    context = {
+        'fornecedor': fornecedor
+    }
+    template_fornecedores = 'fornecedores/deletar_fornecedor.html'
+    return render(request, template_fornecedores, context) 
 
 
 

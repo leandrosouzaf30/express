@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Editar Produto
+            Cadastro de Fornecedores
         </h1>
         <ol class="breadcrumb">
             <li>
@@ -33,6 +33,9 @@
                                     {{ form.as_p }}
                                 </div>
                             </div>
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                            {% endfor %}
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-primary">Enviar</button>
                             </div>

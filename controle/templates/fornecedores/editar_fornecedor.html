@@ -3,19 +3,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Excluir Produto
+            Editar Fornecedor
         </h1>
-
-        <div class="alert alert-warning alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                Cuidado! Esta ação eliminará este registro do sistema.
-        </div>
-        <form method="POST" class="post-form" role="form">
-            {% csrf_token %}
-            <p>Tem certeza que você quer deletar este produto <strong>{{ produto.descricao }}</strong> ?</p>
-            <button type="submit" class="btn btn-warning">Deletar</button>       
-        </form>
         <ol class="breadcrumb">
             <li>
                 <a href="#">
@@ -29,7 +18,7 @@
     </section>
 
     <!-- Main content -->
-    {% comment %} <section class="content">
+    <section class="content">
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
@@ -37,18 +26,24 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body table-responsive no-padding">
-                        <h2>{{produto.descricao}}</h2>
-                        <h3>{{produto.fornecedor.nome}}</h3>
-                        <h3>{{produto.categoria.nome}}</h3>
-                        <h3>{{produto.descricao}}</h3>
-                        <h3>{{produto.preco}}</h3>
+                        <form method="POST" class="post-form" role="form">
+                            {% csrf_token %}
+                            <div class="box-body">
+                                <div class="form-group">
+                                    {{ form.as_p }}
+                                </div>
+                            </div>
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                            </div>
+                        </form>
                     </div>
                     <!-- /.box-body -->
                 </div>
                 <!-- /.box -->
             </div>
         </div>
-    </section> {% endcomment %}
+    </section>
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->

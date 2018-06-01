@@ -22,5 +22,9 @@ urlpatterns = [
 
 
     path('fornecedores/', views.fornecedores, name='fornecedores'),
+    path('fornecedor/<int:pk>/', views.fornecedor_detalhe, name='fornecedor_detalhe'),
+    path('fornecedor/cadastro/', views.fornecedor_novo, name='fornecedor_novo'),
+    path('fornecedor/<int:pk>/editar/', views.fornecedor_editar, name='fornecedor_editar'),
+    path('fornecedor/<int:pk>/excluir/', views.fornecedor_deletar, name='fornecedor_deletar'),
 
 ]
