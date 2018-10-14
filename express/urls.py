@@ -17,12 +17,20 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+
+from controle.api.viewsets import FornecedorViewSet
+router.register(r'fornecedores', FornecedorViewSet, base_name='Fornecedor')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('core.urls')),
-    path('', include('controle.urls')),
-    path('', include('contas.urls')),
+    # path('', include('core.urls')),
+    # path('', include('controle.urls')),
+    # path('', include('contas.urls')),
+    
+    path('', include(router.urls)),
 ]
 
 if settings.DEBUG:

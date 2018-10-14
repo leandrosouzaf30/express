@@ -1,3 +1,14 @@
 from django.test import TestCase
 
-# Create your tests here.
+from controle.models import Fornecedor
+
+class FornecedorTestCase(TestCase):
+    def setUp(self):
+        self.fornecedor01 = Fornecedor.objects.create(
+                                                        nome='Shopping Mucuripe', 
+                                                        endereco='Av. Principal',
+                                                        cidade='Fortaleza',
+                                                        uf='CE',
+                                                        telefone='20202020',
+                                                        )
+
